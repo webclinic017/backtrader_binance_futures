@@ -1,5 +1,5 @@
 # backtrader_binance_futures
-Backtrader Live Trading For Binance Futures
+Backtrader Live Trading For Binance Futures (Websocket Connection)
 
 Modified from repository [backtrader_binance](https://github.com/WISEPLAT/backtrader_binance)
 
