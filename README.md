@@ -10,4 +10,3 @@ Before using, please note:
 
 By using this code, you agree to the above terms.
 
-Contact me: Telegram [@zhao_yiming](https://t.me/zhao_yiming)
