@@ -142,12 +142,18 @@ class BinanceBroker(BrokerBase):
             exectype=None, valid=None, tradeid=0, oco=None,
             trailamount=None, trailpercent=None, hedge=False,
             **kwargs):
-        return self._submit(owner, data, SIDE_BUY, exectype, size, price, hedge=hedge)
+        try:
+            return self._submit(owner, data, SIDE_BUY, exectype, size, price, hedge=hedge)
+        except:  # catch all errors from the API
+            return None
 
     def cancel(self, order):
         order_id = order.binance_order['orderId']
         symbol = order.binance_order['symbol']
-        self._store.cancel_order(symbol=symbol, order_id=order_id)
+        try:
+            self._store.cancel_order(symbol=symbol, order_id=order_id)
+        except:
+            pass
 
     def format_price(self, value):
         return self._store.format_price(value)
@@ -182,4 +188,8 @@ class BinanceBroker(BrokerBase):
              exectype=None, valid=None, tradeid=0, oco=None,
              trailamount=None, trailpercent=None, hedge=False,
              **kwargs):
-        return self._submit(owner, data, SIDE_SELL, exectype, size, price, hedge=hedge)
+        try:
+            return self._submit(owner, data, SIDE_SELL, exectype, size, price, hedge=hedge)
+        except:  # catch all errors from the API
+            return None
+
