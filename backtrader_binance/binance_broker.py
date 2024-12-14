@@ -145,7 +145,7 @@ class BinanceBroker(BrokerBase):
         try:
             return self._submit(owner, data, SIDE_BUY, exectype, size, price, hedge=hedge)
         except Exception as e:  # catch all errors from the API
-            print('Exception while buying', e)
+            print('Exception while buying:', e)
             return None
 
     def cancel(self, order):
@@ -192,5 +192,5 @@ class BinanceBroker(BrokerBase):
         try:
             return self._submit(owner, data, SIDE_SELL, exectype, size, price, hedge=hedge)
         except Exception as e:  # catch all errors from the API
-            print('Exception while buying', e)
+            print('Exception while selling:', e)
             return None
