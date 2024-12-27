@@ -94,7 +94,7 @@ class BinanceBroker(BrokerBase):
                             self.open_orders.remove(o)
                         self.notify(o)
         elif msg['e'] == 'error':
-            raise msg
+            print("Error in user socket: ", msg)
 
     def _set_order_status(self, order, binance_order_status):
         if binance_order_status == ORDER_STATUS_CANCELED:

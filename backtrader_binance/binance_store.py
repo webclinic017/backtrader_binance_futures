@@ -97,9 +97,11 @@ class BinanceStore(object):
             if api_err.code == -2011:  # Order filled
                 return
             else:
-                raise api_err
+                print('API error while canceling order', api_err)
+                # raise api_err
         except Exception as err:
-            raise err
+            print('Error while canceling order', err)
+            # raise err
 
     @retry
     def create_order(self, symbol, side, type, size, price, hedge=False, position_side='LONG'):
@@ -150,7 +152,8 @@ class BinanceStore(object):
             if item['asset'] == asset:
                 return float(item['availableBalance']), float(item['balance']) - float(item['availableBalance'])
         # return float(balance['free']), float(balance['locked'])
-        raise Exception('Asset not found!')
+        # raise Exception('Asset not found!')
+        return None
 
     def get_symbol_balance(self, symbol):  # TODO
         """Get symbol balance in symbol"""

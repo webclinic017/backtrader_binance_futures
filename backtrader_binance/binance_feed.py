@@ -24,14 +24,17 @@ class BinanceData(DataBase):
 
         self.symbol = self.p.dataname
 
-        if hasattr(self.p, 'timeframe'): self.timeframe = self.p.timeframe
-        if hasattr(self.p, 'compression'): self.compression = self.p.compression
-        if 'start_date' in kwargs: self.start_date = kwargs['start_date']
-        if 'LiveBars' in kwargs: self.LiveBars = kwargs['LiveBars']
+        if hasattr(self.p, 'timeframe'):
+            self.timeframe = self.p.timeframe
+        if hasattr(self.p, 'compression'):
+            self.compression = self.p.compression
+        if 'start_date' in kwargs:
+            self.start_date = kwargs['start_date']
+        if 'LiveBars' in kwargs:
+            self.LiveBars = kwargs['LiveBars']
 
         self._store = store
         self._data = deque()
-
 
         # print("Ok", self.timeframe, self.compression, self.start_date, self._store, self.LiveBars, self.symbol)
 
@@ -40,15 +43,9 @@ class BinanceData(DataBase):
         if msg['e'] == 'continuous_kline':
             if msg['k']['x']:  # Is closed
                 kline = self._parser_to_kline(msg['k']['t'], msg['k']).values.tolist()
-                # for item in kline:
-                #     if item[0] in self.limit_set:
-                #         return
-                #     else:
-                #         self.limit_set.add(item[0])
-                # print(kline)
                 self._data.extend(kline)
         elif msg['e'] == 'error':
-            print("Error in WebSocket: ", msg)
+            print("Error in kine socket: ", msg)
 
     def _load(self):
         if self._state == self._ST_OVER:
