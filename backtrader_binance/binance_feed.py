@@ -48,7 +48,7 @@ class BinanceData(DataBase):
                 # print(kline)
                 self._data.extend(kline)
         elif msg['e'] == 'error':
-            raise msg
+            print("Error in WebSocket: ", msg)
 
     def _load(self):
         if self._state == self._ST_OVER:
